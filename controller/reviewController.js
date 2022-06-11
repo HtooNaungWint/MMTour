@@ -5,7 +5,6 @@ const handler = require('./handler');
 
 exports.getTourId = catchAsync(async (req, res, next) => {
   if (req.params.tourId) req.body.tour = req.params.tourId;
-  console.log(`req.body.tour ${req.body.tour} = ${req.params.tourId}`);
   next();
 });
 
@@ -58,9 +57,7 @@ exports.getReviewByTour = catchAsync(async (req, res, next) => {
 });
 
 exports.tourCreateReview = catchAsync(async (req, res, next) => {
-  console.log('tourID form body', req.body.tourId);
   const tourId = req.params.tourId || req.body.tourId;
-  console.log(`tourId: ${tourId}`);
   req.body.user = req.user.id;
   const review = await Review.findOne({ user: req.body.user, tour: tourId });
 

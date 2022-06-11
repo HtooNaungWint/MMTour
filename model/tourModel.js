@@ -152,7 +152,6 @@ tourSchema.pre('save', function (next) {
 
 //doesn't use function because doesn't require 'this'.
 // tourSchema.post('save', (doc, next) => {
-//   console.log(`document : ${doc}`);
 //   next();
 // });
 

@@ -13,7 +13,6 @@ const authController = require('../controller/authController');
 const router = express.Router();
 
 const loginChk = async (req, res, next) => {
-  console.log('login check is working');
   token = req.cookies.jwt;
   try {
     if (!token) {
@@ -23,18 +22,14 @@ const loginChk = async (req, res, next) => {
       token,
       process.env.JWT_SECRET_KEY
     );
-    console.log(JSON.stringify(decodedData));
 
     const user = await User.findById(decodedData.id);
 
     if (!user) {
-      console.log(`there is na error helpppp 🆘`);
       return next();
     }
 
     if (await user.changePassword(decodedData.iat)) {
-      console.log(`there is na error helpppp 🆘`);
-      console.log('password have updated, please login again');
       return next();
     }
 
@@ -76,7 +71,6 @@ router.route('/tour/:name').get(loginChk, async (req, res, next) => {
       });
     }
 
-    console.log(`tours : ${tour}`);
     res.status(200).render('tour', {
       title: tour.name,
       tour: tour,
@@ -91,7 +85,6 @@ router.route('/tour/:name').get(loginChk, async (req, res, next) => {
 });
 
 router.route('/login').get(loginChk, (req, res) => {
-  console.log('hi form login router');
   res.status(200).render('login', {
     title: 'Login',
   });
@@ -125,20 +118,15 @@ router.route('/passwordReset/:token').get(loginChk, (req, res) => {
 });
 
 router.route('/bookings').get(loginChk, async (req, res) => {
-  console.log('bookiing tours are worknig');
   try {
-    console.log(res.locals.user);
     const bookings = await Booking.find({ user: res.locals.user._id }).populate(
       'tour'
     );
-
-    console.log(bookings);
 
     // you can virtual populate booking with tour
     // but instead we will just find tour with each booking id
     //const tourIds = bookings.map((booking) => booking.tour);
     //const tours = await Tour.find({ _id: { $in: tourIds } });
-    //console.log('booking page is loading');
 
     res.status(200).render('booking', {
       title: 'Bookings',
@@ -146,7 +134,6 @@ router.route('/bookings').get(loginChk, async (req, res) => {
       bookings: bookings,
     });
   } catch (err) {
-    console.log(err);
     res.status(401).render('errorPage', {
       title: 'Password Reset',
       message: 'something went wrong please content the administrator',

@@ -7,16 +7,11 @@ const app = require('./app');
 
 const port = process.env.PORT || 3000;
 
-//console.log(process.env);
-//console.log(process.env.NODE_ENV);
-console.log(process.env.DATABASE_URL);
 const server = app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
 process.on('unhandledRejection', (err) => {
-  console.log('unhandledRejection .........🥶');
-  console.log(err);
   server.close(() => {
     process.exit(1);
   });

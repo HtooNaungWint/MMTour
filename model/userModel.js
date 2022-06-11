@@ -88,7 +88,6 @@ userSchema.pre('save', async function (next) {
 //instead method
 userSchema.methods.correctPassword = async function (candidate, real) {
   //this.password is not valiable because select is set false
-  console.log('this process is running');
   return await bcrypt.compare(candidate, real);
 };
 
@@ -100,10 +99,7 @@ function toTimestamp(strDate) {
 userSchema.methods.changePassword = async function (jwtTimestamp) {
   if (this.passwordUpdatedDate) {
     const timestamps = this.passwordUpdatedDate.getTime() / 1000;
-    console.log(Math.floor(timestamps), jwtTimestamp);
-    console.log(Math.floor(timestamps) < jwtTimestamp + 1);
     if (Math.floor(timestamps) > jwtTimestamp + 1) {
-      console.log('password updated helppppppp');
       return true;
     }
   }

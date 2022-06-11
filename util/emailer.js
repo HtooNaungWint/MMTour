@@ -65,13 +65,11 @@ module.exports = class Email {
   async sendWelcome() {
     const template = 'welcome';
     const subject = `🚍Welcome from MMTour🚍`;
-    console.log('mail is sending');
     await this.send(template, subject);
   }
   async sendPasswordRequest() {
     const template = 'passwordReset';
     const subject = `'Password reset | MMTour'`;
-    console.log('mail is sending');
     await this.send(template, subject);
   }
 };

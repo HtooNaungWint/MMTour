@@ -7,12 +7,10 @@ const Tour = require('../model/tourModel');
 
 exports.checkUserId = (req, res, next) => {
   if (req.user) req.body.user = req.user.id;
-  console.log(`req.user is ${req.user}`);
   next();
 };
 
 exports.checkoutSession = catchAsync(async (req, res, next) => {
-  console.log('hello from booking controller');
   if (!req.params.tourId)
     next(new appError('Which tour are you gonna book 🫤', 404));
 
@@ -20,7 +18,6 @@ exports.checkoutSession = catchAsync(async (req, res, next) => {
 
   if (!tour)
     next(new appError('The Tour you are looking for is not available', 404));
-  console.log(tour);
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     //success workaround before stripe session is created
@@ -70,11 +67,8 @@ exports.updateBooking = handler.updateDocument(Booking, 'bookings');
 
 //TODO: add this is not secure.but will fixed later
 exports.createBooking = catchAsync(async (req, res, next) => {
-  console.log('createBooking is working');
-  console.log(req.query);
   const { tour, user, price } = req.query;
   if (!tour && !user && !price) return next();
   await Booking.create({ tour, user, price });
-  console.log('booking is successful');
   res.redirect(req.originalUrl.split('?')[0]);
 });

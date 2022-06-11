@@ -53,8 +53,6 @@ exports.resizeUserPic = (req, res, next) => {
       quality: 90,
     })
     .toFile(`static/img/users/${req.file.filename}`);
-  console.log('resize is working');
-  console.log(`file name: ${req.file.filename}`);
   next();
 };
 
@@ -64,8 +62,6 @@ const tokenGenerate = (id) =>
   });
 
 const tokenSend = (user, statusCode, statusMessage, res) => {
-  console.log('/////////////////');
-  console.log(user);
   const token = tokenGenerate(user._id);
   const cookieOption = {
     expires: new Date(
@@ -75,8 +71,6 @@ const tokenSend = (user, statusCode, statusMessage, res) => {
   };
   if (process.env.NODE_ENV === 'production') cookieOption.secure = true;
   res.cookie('jwt ', token, cookieOption);
-  console.log('/////////');
-  console.log(res.cookie);
   res.status(statusCode).json({
     status: statusMessage,
     token,
@@ -129,8 +123,6 @@ exports.login = appAsync(async (req, res, next) => {
   const user = await User.findOne({ email }).select('+password');
 
   //const passwordCorrect = userPassword.correctPassword(password, userPassword);
-  console.log(`user : ${user}`);
-  console.log(`condition is ${!user}`);
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('email or password incorrect', 400));
   }
@@ -170,12 +162,10 @@ exports.authenticateChk = appAsync(async (req, res, next) => {
     return next(new AppError('please login to view the context', 404));
   }
 
-  console.log('token gotcha');
   const decodedData = await promisify(jwt.verify)(
     token,
     process.env.JWT_SECRET_KEY
   );
-  console.log(JSON.stringify(decodedData));
 
   const user = await User.findById(decodedData.id);
 
@@ -183,7 +173,6 @@ exports.authenticateChk = appAsync(async (req, res, next) => {
     return next(new AppError('User no longer exist', 404));
   }
   if (await user.changePassword(decodedData.iat)) {
-    console.log('password have updated, please login again');
     return next(new AppError('password have updated, please login again', 404));
   }
 
@@ -206,7 +195,6 @@ exports.restrictTo = (...roles) => {
 };
 
 exports.forgetPassword = appAsync(async (req, res, next) => {
-  console.log(`email : ${req.body.email}`);
   if (!req.body.email) {
     return next(new AppError(`please enter a valid email`, 404));
   }
@@ -217,7 +205,6 @@ exports.forgetPassword = appAsync(async (req, res, next) => {
   }
   const resetToken = await user.passwordForget();
   await user.save({ validateBeforeSave: false });
-  console.log(`resetToken = ${resetToken}`);
 
   //build password reset link for user to reset password
   const resetLink = `${req.protocol}://${req.get('host')}${req.baseUrl
@@ -256,14 +243,11 @@ exports.forgetPassword = appAsync(async (req, res, next) => {
 });
 
 exports.resetPassword = appAsync(async (req, res, next) => {
-  console.log(`Hi from password reset : ${req.params.token}`);
-  console.log(req.params.token);
   const token = crypto
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
 
-  console.log(Date(Date.now()));
   const user = await User.findOne({
     passwordResetToken: token,
     passwordResetExpDate: { $gt: Date(Date.now()) },
@@ -276,8 +260,6 @@ exports.resetPassword = appAsync(async (req, res, next) => {
       )
     );
   }
-  console.log('...........................');
-  console.log(user);
   if (
     await user.passwordUpdate(
       req.body.password,
@@ -326,7 +308,6 @@ exports.updatePassword = appAsync(async (req, res, next) => {
 });
 
 exports.userUpdate = appAsync(async (req, res, next) => {
-  console.log(req.file);
   if (req.body.newPasswordConfirm || req.body.newPassword) {
     return next(
       new AppError(`You can not update your password directly.`, 404)
@@ -334,7 +315,6 @@ exports.userUpdate = appAsync(async (req, res, next) => {
   }
   const newBody = filerBody(req.body, 'name', 'email');
   if (req.file) newBody.picture = req.file.filename;
-  console.log(`file name : ${newBody.picture}`);
   const updateUser = await User.findByIdAndUpdate(req.user.id, newBody, {
     new: true,
     runValidators: true,

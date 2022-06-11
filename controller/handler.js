@@ -68,7 +68,6 @@ exports.deleteOne = (Model, modelName) =>
 
 exports.createDocument = (Model, modelName) =>
   catchAsync(async (req, res) => {
-    console.log('handler is working fine');
     const doc = await Model.create(req.body);
     res.status(201).json({
       status: `The ${modelName} has been created successfully`,
@@ -79,7 +78,6 @@ exports.createDocument = (Model, modelName) =>
 exports.getAllDocuments = (Model, modelName, populateValue, selectValue) =>
   catchAsync(async (req, res) => {
     const findObj = { ...req.query };
-    console.log('handler is working fine');
     let queryString = JSON.stringify(findObj);
     //  regex refreance at  https://www.w3schools.com/jsref/jsref_obj_regexp.asp
     queryString = queryString.replace(
@@ -88,7 +86,6 @@ exports.getAllDocuments = (Model, modelName, populateValue, selectValue) =>
     );
 
     const realQuery = JSON.parse(queryString);
-    console.log(req.body);
     const features = new QueryFeature(
       Model.find(req.body).populate(populateValue).select(selectValue),
       realQuery
@@ -110,8 +107,6 @@ exports.getAllDocuments = (Model, modelName, populateValue, selectValue) =>
 
 exports.getDocumentById = (Model, modelName, populateValue) =>
   catchAsync(async (req, res, next) => {
-    console.log('handler is working fine');
-
     const doc = await Model.findById(req.params.id).populate(populateValue);
 
     if (!doc) return next(new AppError(`No ${modelName} with given id`, 404));

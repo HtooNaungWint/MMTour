@@ -45,7 +45,6 @@ exports.resizeTourPic = async (req, res, next) => {
   // wait the async promise to finished for
   await Promise.all(
     req.files.images.map(async (file, index) => {
-      console.log(`index ${index}`);
       req.body.images.push(`tour-${req.params.id}-${index}-.jpeg`);
       await sharp(file.buffer)
         .resize(2000, 1333)
@@ -164,7 +163,6 @@ exports.getNearestTour = catchAsyn(async (req, res, next) => {
   if (!latitude || !longitude) {
     next(new AppError('please specify a latitude and longitude', 400));
   }
-  console.log(distance, latitude, longitude, unit);
 
   // https://www.mongodb.com/docs/manual/reference/operator/query/centerSphere/#mongodb-query-op.-centerSphere
   const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
@@ -192,7 +190,6 @@ exports.getDistance = catchAsyn(async (req, res, next) => {
   if (!latitude || !longitude) {
     next(new AppError('please specify a latitude and longitude', 400));
   }
-  console.log('params data' + latitude, longitude, unit);
 
   const multiplier = unit === 'mil' ? 0.00062137119224 : 0.001;
 

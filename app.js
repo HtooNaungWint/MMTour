@@ -8,6 +8,7 @@ const xssClean = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const compressions = require('compression');
 
 const app = express();
 app.use(cors());
@@ -52,7 +53,6 @@ app.use('/api', limiter);
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.headers);
   next();
 });
 
@@ -61,7 +61,6 @@ app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  console.log(req.cookies);
   next();
 });
 
@@ -75,6 +74,7 @@ app.use(
     whitelist: ['duration', 'rating', 'difficulty', 'GroupSize'],
   })
 );
+app.use(compression());
 
 //express serving static files
 //app.use(express.static('./static/'));
