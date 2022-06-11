@@ -1,0 +1,45 @@
+extends userPageBase
+
+block user-content   
+    main.main.main_booking
+        .card-container.card-container_booking
+ 
+            each booking in bookings
+                .card
+                  p.booking_date=`booking date is ${booking.createdAt.toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            img.card__picture-img(src=`/img/tours/${booking.tour.imageCover}`, alt=`${booking.tour.name}`)
+                        h3.heading-tertirary
+                            span=booking.tour.name
+
+                    .card__details
+                        h4.card__sub-heading= `${booking.tour.difficulty} ${booking.tour.duration}-days tour`
+                        p.card__text=booking.tour.summary
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='img/icons.svg#icon-map-pin')
+                            span=booking.tour.startLocation.description
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='img/icons.svg#icon-calendar')
+                            span=booking.tour.startDates[0].toLocaleDateString('en-US',{month:'long', day:'numeric'})
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='img/icons.svg#icon-flag')
+                            span=`${booking.tour.locations.length} stop`
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='img/icons.svg#icon-user')
+                            span=`${booking.tour.GroupSize}`
+                    
+                    .card__footer
+                        p
+                            span.card__footer-value=`${booking.tour.price}$ `
+                            span.card__footer-text per person
+                        p.card__ratings
+                            span.card__footer-value=`${booking.tour.ratingAverage} `
+                            span.card__footer-text=`rating (${booking.tour.ratingQuantity})`
+                        a.btn.btn--gold.btn--small(href=`/tour/${booking.tour.name}`) Details
+

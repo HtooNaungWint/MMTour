@@ -1,0 +1,18 @@
+extends base
+
+
+block content 
+    main.main
+        .error 
+            .error__title 
+                h2.heading-secondary.heading-secondary--error=status
+                h2.error__emoji Something went wrong here 
+            .error__message
+                if message 
+                    h1=message
+                    h2.error__emoji 😢
+                else               
+                    h1 Please content the administrator for more information
+                    h1 but administrator won't give you his phone number
+                    h2.error__emoji 😢
+                

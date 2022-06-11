@@ -1,0 +1,41 @@
+extends base
+
+mixin navMenu(active, href, icon, menuName)
+    li(class=`${active? "side-nav--active" : "" }`)
+        a(href=`${href}`)
+            svg
+                use(xlink:href=`${icon}`)
+            | #{menuName}  
+
+block content   
+
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    -var values = [7];
+                    -var lastSegmentOfUrl = window.location.href.substring(this.href.lastIndexOf('/') + 1);
+                    for str, x in ['User Settings','Bookings','reviews','billings','manageTour','manageUser','manageReview','manageBookings']
+                        if ( title == str) 
+                             - values[x] = true
+                        else
+                              - values[x] = false
+                    h1=lastSegmentOfUrl
+                    +navMenu(values[0],'#','/img/icons.svg#icon-settings','Settings')
+                    +navMenu(values[1],'/bookings','/img/icons.svg#icon-briefcase','My bookings')
+                    +navMenu(false,'#','/img/icons.svg#icon-star','My reviews')
+                    +navMenu(false,'#','/img/icons.svg#icon-credit-card','Billing')
+
+
+                if user.role == 'admin'
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            +navMenu(false,'#','/img/icons.svg#icon-map','Manage tours')
+                            +navMenu(false,'#','/img/icons.svg#icon-users','Manage users')
+                            +navMenu(false,'#','/img/icons.svg#icon-star','Manage reviews')
+                            +navMenu(false,'#','/img/icons.svg#icon-briefcase','Manage bookings')
+
+            block user-content
+
+block append foot
