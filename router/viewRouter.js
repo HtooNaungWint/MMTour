@@ -58,6 +58,22 @@ router
     }
   });
 
+router
+  .route('/')
+  .get(loginChk, bookingController.createBooking, async (req, res, next) => {
+    try {
+      const tours = await Tour.find();
+      res.status(200).render('overview', {
+        title: 'All Tours',
+        tours: tours,
+      });
+    } catch (err) {
+      res.status(200).render('overview', {
+        title: 'All Tours | fail',
+        tours: [],
+      });
+    }
+  });
 router.route('/tour/:name').get(loginChk, async (req, res, next) => {
   try {
     const tour = await Tour.findOne({ name: req.params.name }).populate(
