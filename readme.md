@@ -37,11 +37,11 @@ icons, logo, are created by me 🥸
 
 here are some user to login and test the system
 
-"email": "isabel@example.com", password: "12345678"
-"email": "edu@example.com", password: "12345678"
-"email": "john@example.com", password: "12345678"
-"email": "leo@example.com", password: "12345678"
-"email": "steve@example.com", password: "12345678"
+- "email": "isabel@example.com", password: "12345678"
+- "email": "edu@example.com", password: "12345678"
+- "email": "john@example.com", password: "12345678"
+- "email": "leo@example.com", password: "12345678"
+- "email": "steve@example.com", password: "12345678"
 
 or you can just sing in with your email account
 if you do you will even receive a welcome message from mmtour
