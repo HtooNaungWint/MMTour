@@ -30,6 +30,8 @@ exports.resizeTourPic = async (req, res, next) => {
   // cover image
   if (req.files.imageCover[0]) {
     req.body.imageCover = `tour-${req.params.id}-cover-.jpeg`;
+    console.log(req.body.imageCover);
+
     await sharp(req.files.imageCover[0].buffer)
       .resize(2000, 1333)
       .toFormat('jpeg')
