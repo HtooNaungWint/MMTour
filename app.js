@@ -19,6 +19,7 @@ const reviewRouter = require('./router/reviewRouter');
 const viewRouter = require('./router/viewRouter');
 const bookingRouter = require('./router/bookingRouter');
 
+//testing
 const AppError = require('./util/appError');
 
 const errorController = require('./controller/errorController');
