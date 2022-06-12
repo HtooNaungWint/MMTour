@@ -43,7 +43,7 @@ router
     authController.userDelete
   )
   .patch(
-    './id',
+    '/:id',
     authController.authenticateChk,
     authController.restrictTo('admin'),
     authController.changeUser,

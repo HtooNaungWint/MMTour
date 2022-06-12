@@ -41,6 +41,7 @@ const upload = multer({
 });
 
 exports.changeUser = async (req, res, next) => {
+  console.log('upload.......');
   if (!req.params.id) next();
   res.user = await User.findById(req.params.id);
   next();
@@ -78,7 +79,8 @@ const tokenSend = (user, statusCode, statusMessage, req, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRE_DATE * 1000 * 60 * 60 * 24
     ),
     httpOnly: true,
-    secure: req.secure || req.headers('x-forwarded-proto') === 'https',
+    secure: false,
+    //req.secure || req.headers('x-forwarded-proto') === 'https',
   });
   res.status(statusCode).json({
     status: statusMessage,
@@ -135,6 +137,7 @@ exports.login = appAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('email or password incorrect', 400));
   }
+  console.log('user');
   user.password = undefined;
   tokenSend(user, 200, 'success', req, res);
 });
