@@ -18,15 +18,14 @@ https://documenter.getpostman.com/view/20362012/Uz5NjDLR
 - almost all necessary api features are done such as password reset, pagination and CRUDs
 - but some of the features are yet to implement to view page
 
+View web site
 https://mmtour.herokuapp.com/overview
 
 - mobile view is not supported"
 - there is no hero page 🫤, maybe i will add it later
-- some features are not implemented yet
-- but instead i will move on with this project because I will just be doing same things over and over again
 
-Mapbox for displaying map
-Stripe for payment integration
+• Mapbox for displaying map
+• Stripe for payment integration
 
 all the profile pictures are generated from
 https://this-person-does-not-exist.com/en
@@ -44,8 +43,10 @@ here are some user to login and test the system
 - "email": "gaigai@gmailtest.com", password: "12345678"
 - "email": "wagahwar@gmailtest.com", password: "12345678"
 
-or you can just sing in with your email account
-if you do you will even receive a welcome message from mmtour
+or you can just sign in with your email account
+•if you do you will even receive a welcome message from mmtour
 
 Thank you for your time
+
 Htoo Naung Wint
+htoonaungwintmm@gmail.com
