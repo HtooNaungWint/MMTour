@@ -32,8 +32,8 @@ app.set('views', path.join(__dirname, 'view'));
 //global security settings
 app.use(
   helmet({
-    //contentSecurityPolicy: false,
-    //crossOriginEmbedderPolicy: false,
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
   })
 );
 
