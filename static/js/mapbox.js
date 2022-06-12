@@ -5,14 +5,18 @@ export const mapDisplay = async (locations) => {
   const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/htoonaung/cl467pqys000d14pkjoxewlgh', // style URL
-    //   center: [-114.406097, 62.439943], // starting position [lng, lat]
-    zoom: 4, // starting zoom
+    center: [94.243033, 20.857794], // starting position [lng, lat]
+    zoom: 15, // starting zoom
     scrollZoom: true, // false
     minZoom: 5, // maximum zoom
   });
 
   const bounds = new mapboxgl.LngLatBounds();
-
+  // const maxbounds = [
+  //   [83.670894, 6.103465], // [west, south] 6.103465, 83.670894
+  //   [107.924574, 31.216653], // [east, north] 31.216653, 107.924574
+  // ];
+  // map.setMaxBounds(maxbounds);
   locations.forEach((loc) => {
     // Create marker
     const el = document.createElement('div');
@@ -52,13 +56,9 @@ export const mapDisplay = async (locations) => {
 
     event.preventDefault();
   });
-  const maxbounds = [
-    [83.670894, 6.103465], // [west, south] 6.103465, 83.670894
-    [107.924574, 31.216653], // [east, north] 31.216653, 107.924574
-  ];
-  map.setMaxBounds(maxbounds);
+
   map.fitBounds(bounds, {
-    // padding: { top: 100, buttons: 800, left: 100, right: 100 },
+    //padding: { top: 300, buttons: 300, left: 300, right: 300 },
     padding: 200,
   });
 };
