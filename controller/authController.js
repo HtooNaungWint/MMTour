@@ -99,6 +99,8 @@ const filerBody = (obj, ...allowedField) => {
   return returnObj;
 };
 
+exports.getUSers = handler.getAllDocuments(User, 'user');
+
 exports.getAllUSers = appAsync(async (req, res, next) => {
   //const newUser = await User.create(req.body);
 

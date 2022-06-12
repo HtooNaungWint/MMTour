@@ -13,6 +13,12 @@ router
   )
 
   .get('/logout', authController.logout)
+  .get(
+    '/',
+    authController.authenticateChk,
+    authController.restrictTo('admin'),
+    authController.getUSers
+  )
 
   .post(
     '/signup',
