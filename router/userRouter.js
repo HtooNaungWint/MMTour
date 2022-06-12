@@ -41,9 +41,11 @@ router
     authController.authenticateChk,
     //authController.restrictTo('admin', 'lead-guide', 'guide'),
     authController.userDelete
-  )
+  );
+
+router
+  .route('/:id')
   .patch(
-    '/:id',
     authController.authenticateChk,
     authController.restrictTo('admin'),
     authController.changeUser,

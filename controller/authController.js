@@ -41,9 +41,8 @@ const upload = multer({
 });
 
 exports.changeUser = async (req, res, next) => {
-  console.log('upload.......');
-  if (!req.params.id) next();
-  res.user = await User.findById(req.params.id);
+\  if (!req.params.id) next();
+  req.body.id = await req.params.id;
   next();
 };
 
@@ -53,6 +52,7 @@ exports.resizeUserPic = (req, res, next) => {
   if (!req.file) return next();
   // read image from memoryStorage
   req.file.filename = `user-${req.user.id}.jpeg`;
+  if (req.params.id) req.file.filename = `user-${req.params.id}.jpeg`;
   sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat('jpeg')
@@ -61,6 +61,8 @@ exports.resizeUserPic = (req, res, next) => {
       quality: 90,
     })
     .toFile(`static/img/users/${req.file.filename}`);
+  console.log(req.file.filename);
+  req.body.picture = req.file.filename;
   next();
 };
 
@@ -79,8 +81,7 @@ const tokenSend = (user, statusCode, statusMessage, req, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRE_DATE * 1000 * 60 * 60 * 24
     ),
     httpOnly: true,
-    secure: false,
-    //req.secure || req.headers('x-forwarded-proto') === 'https',
+    secure: req.secure || req.headers('x-forwarded-proto') === 'https',
   });
   res.status(statusCode).json({
     status: statusMessage,
