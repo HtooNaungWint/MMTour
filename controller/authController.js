@@ -61,16 +61,18 @@ const tokenGenerate = (id) =>
     expiresIn: process.env.JWT_TIMEOUT,
   });
 
-const tokenSend = (user, statusCode, statusMessage, res) => {
+const tokenSend = (user, statusCode, statusMessage, req, res) => {
   const token = tokenGenerate(user._id);
-  const cookieOption = {
+
+  // req.secure don't work with heroku
+  // req.headers('x-forwarded-proto') === 'https' is use to workaround for heroku
+  res.cookie('jwt ', token, {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRE_DATE * 1000 * 60 * 60 * 24
     ),
     httpOnly: true,
-  };
-  if (process.env.NODE_ENV === 'production') cookieOption.secure = true;
-  res.cookie('jwt ', token, cookieOption);
+    secure: req.secure || req.headers('x-forwarded-proto') === 'https',
+  });
   res.status(statusCode).json({
     status: statusMessage,
     token,
@@ -108,7 +110,7 @@ exports.signup = appAsync(async (req, res, next) => {
     passwordConfirmation: req.body.passwordConfirmation,
   });
   new Email(newUser, `${process.env.BASE_ROUT}/user`).sendWelcome();
-  tokenSend(newUser, 200, 'success', res);
+  tokenSend(newUser, 200, 'success', req, res);
 });
 
 exports.login = appAsync(async (req, res, next) => {
@@ -127,7 +129,7 @@ exports.login = appAsync(async (req, res, next) => {
     return next(new AppError('email or password incorrect', 400));
   }
   user.password = undefined;
-  tokenSend(user, 200, 'success', res);
+  tokenSend(user, 200, 'success', req, res);
 });
 
 exports.logout = appAsync((req, res) => {
@@ -268,7 +270,7 @@ exports.resetPassword = appAsync(async (req, res, next) => {
     )
   ) {
     user.password = undefined;
-    tokenSend(user, 200, 'success', res);
+    tokenSend(user, 200, 'success', req, res);
   } else {
     next(new AppError(`Password reset fail please try again later`, 500));
   }
@@ -304,7 +306,7 @@ exports.updatePassword = appAsync(async (req, res, next) => {
 
   await user.save();
   user.password = undefined;
-  tokenSend(user, 200, 'success', res);
+  tokenSend(user, 200, 'success', req, res);
 });
 
 exports.userUpdate = appAsync(async (req, res, next) => {

@@ -12,7 +12,7 @@ const compression = require('compression');
 
 const app = express();
 app.use(cors());
-
+app.enable('trust proxy');
 const tourRouter = require('./router/tourRouter');
 const userRouter = require('./router/userRouter');
 const reviewRouter = require('./router/reviewRouter');
@@ -32,8 +32,8 @@ app.set('views', path.join(__dirname, 'view'));
 //global security settings
 app.use(
   helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
+    //contentSecurityPolicy: false,
+    //crossOriginEmbedderPolicy: false,
   })
 );
 

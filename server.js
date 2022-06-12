@@ -12,8 +12,16 @@ const server = app.listen(port, () => {
 });
 
 process.on('unhandledRejection', (err) => {
+  console.log('unhandledRejection, shutting down ...........');
   server.close(() => {
     process.exit(1);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM recieved, shutting down ...........');
+  server.close(() => {
+    //process.exit(1); no need to close for SIGTERM
   });
 });
 
