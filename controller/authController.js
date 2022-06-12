@@ -41,7 +41,7 @@ const upload = multer({
 });
 
 exports.changeUser = async (req, res, next) => {
-\  if (!req.params.id) next();
+  if (!req.params.id) next();
   req.body.id = await req.params.id;
   next();
 };
@@ -83,6 +83,7 @@ const tokenSend = (user, statusCode, statusMessage, req, res) => {
     httpOnly: true,
     secure: req.secure || req.headers('x-forwarded-proto') === 'https',
   });
+
   res.status(statusCode).json({
     status: statusMessage,
     token,
