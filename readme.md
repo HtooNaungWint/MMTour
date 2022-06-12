@@ -20,6 +20,7 @@ https://documenter.getpostman.com/view/20362012/Uz5NjDLR
 
 https://mmtour.herokuapp.com/overview
 
+- mobile view is not supported 🥲
 - there is no hero page 🫤, maybe i will add it later
 - some features are not implemented yet
 - but instead i will move on with this project because I will just be doing same things over and over again
