@@ -1,5 +1,7 @@
 # Myanmar Tour
 
+![](static/img/logo-long-text-white-highlight.png)
+
 Thank you for visiting my "Myanmar Tour" project
 This project is built using nodejs and express
 Database is MongoDB
