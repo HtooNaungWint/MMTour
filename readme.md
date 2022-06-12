@@ -6,7 +6,7 @@ Thank you for visiting my "Myanmar Tour" project
 This project is built using nodejs and express
 Database is MongoDB
 
-Even though there are some business logic are need to be implemented
+Even though some business logic are needed to be implemented
 The application is up and running perfectly
 
 Maybe I will try new features and technologies on this app
@@ -37,11 +37,11 @@ icons, logo, are created by me 🥸
 
 here are some user to login and test the system
 
-- "email": "ayeba@gmailtest.com", password: "12345678"
-- "email": "lutharr@gmailtest.com", password: "12345678"
-- "email": "pyanlar@gmailtest.com", password: "12345678"
-- "email": "gaigai@gmailtest.com", password: "12345678"
-- "email": "wagahwar@gmailtest.com", password: "12345678"
+- "email": "kaythar@gmailtest.com", password: "12345678"
+- "email": "ayeaye@gmailtest.com", password: "12345678"
+- "email": "kyawzaw@gmailtest.com", password: "12345678"
+- "email": "Theon@gmailtest.com", password: "12345678"
+- "email": "lusoe@gmailtest.com", password: "12345678"
 
 or you can just sign in with your email account
 •if you do you will even receive a welcome message from mmtour
