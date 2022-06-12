@@ -36,6 +36,11 @@ module.exports = (err, req, res, next) => {
 
   if (process.env.NODE_ENV === 'development') {
     console.error(err.stack);
+    if (!req.originalUrl.startsWith('/api')) {
+      res.status(200).render('errorPage', {
+        title: '404',
+      });
+    }
     res.status(err.statusCode).json({
       status: err.status,
       error: err,
@@ -43,12 +48,6 @@ module.exports = (err, req, res, next) => {
       stack: err.stack,
     });
   } else if (process.env.NODE_ENV === 'production') {
-    if (!req.originalUrl.startsWith('/api')) {
-      console.error('hello baby');
-      res.status(200).render('errorPage', {
-        title: '404',
-      });
-    }
     if (err.name === 'CastError') err = handleCatchErrorDb(err);
     if (err.code === 11000) err = handleDuplicateErrorDb(err);
     if (err.name === 'ValidationError') err = handlerValidatorErrorDb(err);
