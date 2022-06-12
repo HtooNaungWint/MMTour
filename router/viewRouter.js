@@ -74,7 +74,7 @@ router
       });
     }
   });
-router.route('/tour/:name').get(loginChk, async (req, res, next) => {
+router.route('/tour/:name').get(async (req, res, next) => {
   try {
     const tour = await Tour.findOne({ name: req.params.name }).populate(
       'reviews'
@@ -100,13 +100,13 @@ router.route('/tour/:name').get(loginChk, async (req, res, next) => {
   }
 });
 
-router.route('/login').get(loginChk, (req, res) => {
+router.route('/login').get((req, res) => {
   res.status(200).render('login', {
     title: 'Login',
   });
 });
 
-router.route('/signup').get(loginChk, (req, res) => {
+router.route('/signup').get((req, res) => {
   res.status(200).render('Signup', {
     title: 'signup',
   });
