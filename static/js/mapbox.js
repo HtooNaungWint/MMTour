@@ -6,7 +6,7 @@ export const mapDisplay = async (locations) => {
     container: 'map', // container ID
     style: 'mapbox://styles/htoonaung/cl467pqys000d14pkjoxewlgh', // style URL
     center: [94.243033, 20.857794], // starting position [lng, lat]
-    zoom: 15, // starting zoom
+    zoom: 8, // starting zoom
     scrollZoom: true, // false
     minZoom: 5, // maximum zoom
   });

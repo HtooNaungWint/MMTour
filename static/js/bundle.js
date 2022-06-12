@@ -11284,7 +11284,7 @@ var mapDisplay = /*#__PURE__*/function () {
               // style URL
               center: [94.243033, 20.857794],
               // starting position [lng, lat]
-              zoom: 15,
+              zoom: 8,
               // starting zoom
               scrollZoom: true,
               // false
