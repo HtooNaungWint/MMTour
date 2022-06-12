@@ -7,6 +7,7 @@ const AppError = require('../util/appError');
 const Email = require('../util/emailer');
 const multer = require('multer');
 const sharp = require('sharp');
+const handler = require('./handler');
 const { pathToFileURL } = require('url');
 
 //set up multer
@@ -38,6 +39,12 @@ const upload = multer({
   storage: multerStorage,
   fileFilter: imageFilter,
 });
+
+exports.changeUser = async (req, res, next) => {
+  if (!req.params.id) next();
+  res.user = await User.findById(req.params.id);
+  next();
+};
 
 exports.uploadUserPic = upload.single('picture');
 
@@ -338,3 +345,5 @@ exports.userDelete = appAsync(async (req, res, next) => {
     message: `User is successfully deleted please contact the administrator to reactivated your account`,
   });
 });
+
+exports.userForceUpdate = handler.updateDocument(User, 'user');

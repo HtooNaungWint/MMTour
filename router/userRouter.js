@@ -41,6 +41,15 @@ router
     authController.authenticateChk,
     //authController.restrictTo('admin', 'lead-guide', 'guide'),
     authController.userDelete
+  )
+  .patch(
+    './id',
+    authController.authenticateChk,
+    authController.restrictTo('admin'),
+    authController.changeUser,
+    authController.uploadUserPic,
+    authController.resizeUserPic,
+    authController.userForceUpdate
   );
 
 router.use('/bookings', bookingRouter);
