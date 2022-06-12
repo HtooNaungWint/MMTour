@@ -14,14 +14,13 @@ block content
             nav.user-view__menu
                 ul.side-nav
                     -var values = [7];
-                    -var lastSegmentOfUrl = window.location.href.substring(this.href.lastIndexOf('/') + 1);
                     for str, x in ['User Settings','Bookings','reviews','billings','manageTour','manageUser','manageReview','manageBookings']
                         if ( title == str) 
                              - values[x] = true
                         else
                               - values[x] = false
                     h1=lastSegmentOfUrl
-                    +navMenu(values[0],'#','/img/icons.svg#icon-settings','Settings')
+                    +navMenu(values[0],'/user','/img/icons.svg#icon-settings','Settings')
                     +navMenu(values[1],'/bookings','/img/icons.svg#icon-briefcase','My bookings')
                     +navMenu(false,'#','/img/icons.svg#icon-star','My reviews')
                     +navMenu(false,'#','/img/icons.svg#icon-credit-card','Billing')
