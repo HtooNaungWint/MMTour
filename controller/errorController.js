@@ -43,8 +43,8 @@ module.exports = (err, req, res, next) => {
       stack: err.stack,
     });
   } else if (process.env.NODE_ENV === 'production') {
-    console.log('dfsf.////////////');
     console.error(req.originalUrl);
+    console.log(err);
     if (!req.originalUrl.startsWith('/api')) {
       console.error('hello baby');
       return res.status(200).render('errorPage', {
