@@ -12,7 +12,8 @@ export const login = async (email, password) => {
       },
     });
     if (r.data.status === 'success') {
-      alertElementShow('success', `welcome ${r.response.data.name}`);
+      console.log(r);
+      alertElementShow('success', `welcome ${r.data.name}`);
       window.location.replace('/user');
       //window.location.reload();
     } else {
