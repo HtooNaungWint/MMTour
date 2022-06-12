@@ -11157,7 +11157,7 @@ var login = /*#__PURE__*/function () {
             r = _context.sent;
 
             if (r.data.status === 'success') {
-              (0, _alert.alertElementShow)('success', "welcome ".concat(r.data.name));
+              (0, _alert.alertElementShow)('success', "welcome ".concat(r.data.data.name));
               window.location.replace('/user'); //window.location.reload();
             } else {
               (0, _alert.alertElementShow)('error', "welcome ".concat(r.data.message));

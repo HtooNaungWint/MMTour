@@ -17,6 +17,20 @@ https://documenter.getpostman.com/view/20362012/Uz5NjDLR
 
 https://mmtour.herokuapp.com/overview
 
-Thank you for your time
+- there is no hero page 🫤, maybe i will add it later
+- some features are not implemented yet
+- but instead i will move on with this project because I will just be doing same things over and over again
 
+Mapbox for displaying map
+Stripe for payment integration
+
+all the profile pictures are generated from
+https://this-person-does-not-exist.com/en
+
+Photo used for displaying tour are downloaded from
+https://unsplash.com/
+
+icons, logo, are created by me 🥸
+
+Thank you for your time
 Htoo Naung Wint
