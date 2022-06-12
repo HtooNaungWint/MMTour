@@ -20,7 +20,7 @@ https://documenter.getpostman.com/view/20362012/Uz5NjDLR
 
 https://mmtour.herokuapp.com/overview
 
-- mobile view is not supported 🥲
+- mobile view is not supported"
 - there is no hero page 🫤, maybe i will add it later
 - some features are not implemented yet
 - but instead i will move on with this project because I will just be doing same things over and over again
@@ -38,11 +38,11 @@ icons, logo, are created by me 🥸
 
 here are some user to login and test the system
 
-- "email": "isabel@example.com", password: "12345678"
-- "email": "edu@example.com", password: "12345678"
-- "email": "john@example.com", password: "12345678"
-- "email": "leo@example.com", password: "12345678"
-- "email": "steve@example.com", password: "12345678"
+- "email": "ayeba@gmailtest.com", password: "12345678"
+- "email": "lutharr@gmailtest.com", password: "12345678"
+- "email": "pyanlar@gmailtest.com", password: "12345678"
+- "email": "gaigai@gmailtest.com", password: "12345678"
+- "email": "wagahwar@gmailtest.com", password: "12345678"
 
 or you can just sing in with your email account
 if you do you will even receive a welcome message from mmtour
