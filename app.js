@@ -8,7 +8,7 @@ const xssClean = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const compressions = require('compression');
+const compression = require('compression');
 
 const app = express();
 app.use(cors());
