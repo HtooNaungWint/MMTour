@@ -14,7 +14,7 @@ export const signup = async (name, email, password, passwordConfirmation) => {
       },
     });
     if (r.data.status === 'success') {
-      alertElementShow('success', `welcome ${r.data.name}`);
+      alertElementShow('success', `welcome ${r.data.data.name}`);
       window.location.replace('/user');
       //window.location.reload();
     } else {
