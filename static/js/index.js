@@ -5,6 +5,7 @@ import { mapDisplay } from './mapbox';
 import { alertElementShow } from './alert';
 import { userUpdate, passwordUpdate } from './user.js';
 import { passwordReset } from './passwordReset';
+import { signup } from './signup';
 import { bookTour } from './stripe';
 
 const mapBox = document.getElementById('map');
@@ -14,6 +15,20 @@ const user = document.querySelector('.form-user-data');
 const passwordEle = document.querySelector('.form-user-settings');
 const passwordResetEle = document.querySelector('.form__passwordReset');
 const bookingEle = document.getElementById('book-tour');
+const signupEle = document.querySelector('.form__signup');
+
+if (signupEle) {
+  signupEle.addEventListener('submit', async (ele) => {
+    ele.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirmation = document.getElementById(
+      'passwordConfirmation'
+    ).value;
+    signup(name, email, password, passwordConfirmation);
+  });
+}
 
 if (user) {
   user.addEventListener('submit', async (ele) => {

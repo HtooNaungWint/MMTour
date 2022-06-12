@@ -106,6 +106,12 @@ router.route('/login').get(loginChk, (req, res) => {
   });
 });
 
+router.route('/signup').get(loginChk, (req, res) => {
+  res.status(200).render('Signup', {
+    title: 'signup',
+  });
+});
+
 router.route('/user').get(loginChk, (req, res) => {
   if (!res.locals.user) {
     res.status(401).render('errorPage', {
