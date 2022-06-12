@@ -15,6 +15,9 @@ but I will not too focus on the business logic and some tedious works
 Api Documentation Link
 https://documenter.getpostman.com/view/20362012/Uz5NjDLR
 
+- almost all necessary api features are done such as password reset, pagination and CRUDs
+- but some of the features are yet to implement to view page
+
 https://mmtour.herokuapp.com/overview
 
 - there is no hero page 🫤, maybe i will add it later
@@ -31,6 +34,16 @@ Photo used for displaying tour are downloaded from
 https://unsplash.com/
 
 icons, logo, are created by me 🥸
+
+here are some user to login and test the system
+"email": "isabel@example.com", password: "12345678"
+"email": "edu@example.com", password: "12345678"
+"email": "john@example.com", password: "12345678"
+"email": "leo@example.com", password: "12345678"
+"email": "steve@example.com", password: "12345678"
+
+or you can just sing in with your email account
+if you do you will even receive a welcome message from mmtour
 
 Thank you for your time
 Htoo Naung Wint
