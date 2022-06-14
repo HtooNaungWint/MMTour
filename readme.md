@@ -45,6 +45,12 @@ here are some user to login and test the system
 
 or you can just sign in with your email account
 if you do, you will even receive a welcome message to your email from mmtour
+testing card information
+Card information - `4242 4242 4242 4242`
+YY/MM - current date or more
+CVC - any munber
+Name on card - any name
+
 
 Thank you for your time
 
