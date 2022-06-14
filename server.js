@@ -33,8 +33,6 @@ const uri = process.env.DATABASE_URL.replace(
   process.env.DATABASE_PASSWORD
 );
 // const uri =
-//   //'mongodb+srv://root:rootroot@cluster0.2fstg.mongodb.net/tour_db?retryWrites=true&w=majority';
-//   `mongodb://localhost:27017/tour_db`;
 
 mongoose
   .connect(uri, {
